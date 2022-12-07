@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.model';
 
@@ -8,12 +8,17 @@ export class UsersController {
   }
 
   @Get()
-  getAll(): User[] {
-    return this.usersService.getAllUsers();
+  async getAll(): Promise<User[]> {
+    return await this.usersService.getAllUsers();
+  }
+
+  @Get(':from')
+  async getSlice(@Param('from') from: string): Promise<User[]> {
+    return await this.usersService.getUsersByIndexes(+from);
   }
 
   @Put()
-  update(@Body() user: User): User {
-    return this.usersService.updateUser(user);
+  async update(@Body() user: User): Promise<User> {
+    return await this.usersService.updateUser(user);
   }
 }

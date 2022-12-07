@@ -5,13 +5,19 @@ import * as USERS_DATA from '../../../../../DB.json';
 export class UsersService {
   users = USERS_DATA as User[];
 
-  updateUser(user : User) : User {
+  async updateUser(user : User) : Promise<User> {
     const oldUser = this.users.find((u)=> u._id === user._id);
     const targetIdx = this.users.indexOf(oldUser);
     return this.users[targetIdx] = user;
   }
 
-  getAllUsers() : User[] {
+  async getUsersByIndexes(from: number) : Promise<User[]> {
+    const to = from + 20;
+    return [...this.users.slice(from, to)]
+  }
+
+
+  async getAllUsers() : Promise<User[]> {
     return [...this.users];
   }
 
