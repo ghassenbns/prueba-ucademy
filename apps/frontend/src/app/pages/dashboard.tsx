@@ -1,12 +1,13 @@
-import Header from '../components/header';
+import Header from '../components/dashboard/header';
 import Navigation from '../components/navigation';
-import DashboardContent from '../components/dashboard-content';
+import DashboardContent from '../components/dashboard/dashboard-content';
 import styled from 'styled-components';
-import UserProfile from '../components/user-profile';
+import UserProfile from '../components/dashboard/user-profile';
 import React, { useState } from 'react';
-const Content = styled.div`display : flex`;
-export const dashboard = () => {
 
+const Content = styled.div`display : flex`;
+
+export const dashboard = () => {
   const [editMode, SetEditMode] = useState(false);
   return (
     <>
@@ -14,7 +15,7 @@ export const dashboard = () => {
       <Content>
         <Navigation/>
         <DashboardContent/>
-        {/*<UserProfile/>*/}
+        {editMode && <UserProfile/>}
       </Content>
     </>
   );

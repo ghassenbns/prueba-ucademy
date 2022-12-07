@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { Colors } from '../styles/colors';
-import img from '../../assets/img.png';
-import userImg from '../../assets/user.svg';
-import phone from '../../assets/phone.svg';
-import mail from '../../assets/mail.svg';
-import calendar from '../../assets/calendar.svg';
+import { Colors } from '../../styles/colors';
+import img from '../../../assets/img.png';
+import userImg from '../../../assets/user.svg';
+import phone from '../../../assets/phone.svg';
+import mail from '../../../assets/mail.svg';
+import calendar from '../../../assets/calendar.svg';
 import React, { useState } from 'react';
 
 const ModalContainer = styled.div`

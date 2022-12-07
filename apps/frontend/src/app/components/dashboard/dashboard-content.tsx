@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import info from '../../assets/info-dark.png';
+import info from '../../../assets/info-dark.png';
 import styled from 'styled-components';
-import { getAllUsers } from '../api/users-api';
+import { getAllUsers } from '../../api/users-api';
 const Table = styled.table`font-family: arial, sans-serif;border-collapse: collapse; width: 100%;`;
 const Th = styled.th`text-align: left;padding: 8px; margin: 0 1rem`;
 const TABLE_HEADERS = ['Conexión', 'Nombre y apellidos', 'Nombre de usuario', 'Email', 'Móvil', ''];
