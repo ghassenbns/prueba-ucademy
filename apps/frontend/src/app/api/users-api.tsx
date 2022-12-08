@@ -13,7 +13,7 @@ export const getAllUsers = (): Promise<User[]> =>  {
 export const getUsersByIndex = (from : number): Promise<User[]> =>  {
   const URL_PARAMS = ENDPOINT_USERS_URL + '/' + from;
   return axios.get(URL_PARAMS)
-    .then(res =>  res)
+    .then(res =>  res.data)
     .catch((err) =>  err);
 };
 

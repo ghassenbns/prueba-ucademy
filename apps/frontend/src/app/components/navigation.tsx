@@ -1,5 +1,5 @@
 import React from 'react';
-import dashboard from '../../assets/dashboard.png';
+import dashboard from '../../assets/dashboard.svg';
 import styled from 'styled-components';
 import { Fonts } from '../styles/fonts';
 
@@ -10,7 +10,7 @@ const SideNav = styled.div`
       height: 100%;
       left: 0px;
       top: 0px;`;
-const Link = styled.div`display: flex; flex-direction: row; padding: 0 1rem; align-content: center; align-items: center;`;
+const Link = styled.div`display: flex; flex-direction: row; padding: 0 1rem; align-content: center; align-items: center; justify-content : center`;
 const Item = styled.a`margin : 0 10% ; font-family : ${Fonts.Poppins}`;
 const NAV_LINKS = [{ name: 'Dashboard', img: dashboard }];
 

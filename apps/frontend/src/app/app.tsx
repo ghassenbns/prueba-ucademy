@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
 import { dashboard } from './pages/dashboard';
+import React from 'react';
 
 const Wrapper = styled.div``;
 

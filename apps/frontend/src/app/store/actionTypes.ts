@@ -1,0 +1,2 @@
+export const UPDATE_USER = "UPDATE_USER";
+export const GET_USERS_BY_INDEXES = "GET_USERS_BY_INDEXES";
