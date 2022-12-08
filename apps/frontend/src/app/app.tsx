@@ -13,16 +13,7 @@ export function App() {
           path="/"
           element={dashboard()}
         />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
       </Routes>
-      {/* END: routes */}
     </Wrapper>
   );
 }

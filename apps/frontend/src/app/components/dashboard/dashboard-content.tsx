@@ -2,21 +2,16 @@ import React, { useEffect, useState } from 'react';
 import info from '../../../assets/info-dark.png';
 import styled from 'styled-components';
 import { getAllUsers } from '../../api/users-api';
+import { Button } from '../button';
+import { Colors } from '../../styles/colors';
 const Table = styled.table`font-family: arial, sans-serif;border-collapse: collapse; width: 100%;`;
 const Th = styled.th`text-align: left;padding: 8px; margin: 0 1rem`;
 const TABLE_HEADERS = ['Conexión', 'Nombre y apellidos', 'Nombre de usuario', 'Email', 'Móvil', ''];
 
 const DashboardContent = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(()=> {
-    const fetchUsers = async () => {
-      const result = await getAllUsers();
-    };
-    fetchUsers()}, []);
   return (
     <div>
-      <button> + Nuevo estudiante</button>
+      <Button text={'+ Nuevo estudiante'} theme={{ color: Colors.white, bg: Colors.success }}/>
       <Table>
         <thead>
         <tr>
