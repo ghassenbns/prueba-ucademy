@@ -6,6 +6,7 @@ import { Button } from '../button';
 import { UserProfile } from './views/user-profile';
 import { UserCourses } from './views/user-courses';
 import { UserModal } from './views/user-modal';
+import { User } from '../../models/user.model';
 
 const ModalContainer = styled.div`
     position: fixed;
@@ -31,7 +32,7 @@ const RightDiv = styled.div`margin-left : auto`;
 
 
 
-const UserInfo = () => {
+const UserInfo = (props: {user : User}) => {
   const [selectedView, setSelectedView] = useState<'profile'|'courses'|'edit'>('profile');
   return (
     <ModalContainer>

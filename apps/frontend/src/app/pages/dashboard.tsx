@@ -1,4 +1,4 @@
-import Header from '../components/dashboard/header';
+import Header from '../components/header';
 import Navigation from '../components/navigation';
 import DashboardContent from '../components/dashboard/dashboard-content';
 import styled from 'styled-components';

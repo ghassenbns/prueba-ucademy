@@ -5,8 +5,9 @@ import { Colors } from '../styles/colors';
 
 interface Props {
   children?: React.ReactNode;
-  theme?: { color: string, bg: string };
+  theme?: { color: string, bg: string, borderColor?:string;};
   text?: string;
+
   callback ?: ()=> Function|void;
 }
 
@@ -15,7 +16,7 @@ export const Button = (props: Props) => (<StyledButton onClick={props.callback} 
 const StyledButton = styled.button`
   background-color: ${props => props.theme.bg};
   color: ${props => props.theme.color};
-  border-color : ${props => props.theme.bg === Colors.white ? Colors.dark : props.theme.bg};
+  border-color : ${props => props.theme.borderColor ? props.theme.borderColor : props.theme.bg === Colors.white ? Colors.dark : props.theme.bg};
   font-size: 12px;
   padding: 5px 10px;
   font-family: ${Fonts.Montserrat};
