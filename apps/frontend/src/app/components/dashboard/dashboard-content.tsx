@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import info from '../../../assets/info-dark.svg';
 import styled, { css } from 'styled-components';
 import { Button } from '../button';
@@ -14,6 +14,15 @@ const UserCase = styled.td`padding:1em 0; border-bottom: solid black 0.5px; font
 const Wrapper = styled.div`width: 100%; padding: 0 5%`;
 const Spacing = styled.div`margin-bottom : 2rem`;
 const Info = styled.img`cursor:pointer`;
+const ModalContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: ${Colors.darkTransparent}
+    `;
 const Thead = () => {
   return(
     <thead>
@@ -27,8 +36,8 @@ const Thead = () => {
 };
 
 const DashboardContent = (props: { users: User[] }) => {
-  const [editMode, setEditMode] = useState(false);
-  const [selectUser, setSelectedUser] = useState<User>();
+  const [selectUser, setSelectedUser] = useState<User|null>(null);  
+
   const UserRow = (props: { user: User }) => {
     const { user } = props;
     return (
@@ -41,7 +50,7 @@ const DashboardContent = (props: { users: User[] }) => {
         <UserCase>{user.email}</UserCase>
         <UserCase>{user.phone}</UserCase>
         <UserCase>
-          <Info onClick={() => {setSelectedUser(user); setEditMode(true)}} src={info} alt='info'/>
+          <Info onClick={() => setSelectedUser(user)} src={info} alt='info'/>
         </UserCase>
       </tr>
     );
@@ -62,7 +71,7 @@ const DashboardContent = (props: { users: User[] }) => {
         })}
         </tbody>
       </Table>
-      {editMode&& selectUser && <UserInfo user={selectUser}/>}
+      {selectUser && <UserInfo user={selectUser} setSelectedUser={setSelectedUser}/>}
     </Wrapper>
   );
 };

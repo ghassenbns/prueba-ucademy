@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
+import { User } from '../../../models/user.model';
 import { Colors } from '../../../styles/colors';
+import { Fonts } from '../../../styles/fonts';
 
 
 const Form = styled.form`display : flex; flex-direction:column; text-align : left`;
@@ -13,27 +15,33 @@ const Container = styled.div`
     left : 50%;
     transform : translate(-50%,-50%);
     padding : 30;
-    text-align :center
+    text-align :center;
+    width: auto;
+    display: contents;
     `;
 
-const InputField = styled.input` border-radius: 5px; border: 1px solid ${Colors.grey} `
+const InputField = styled.input`border-radius: 5px; border: 1px solid ${Colors.grey}; height: 1.5rem; margin-bottom:5%`
+
+const Label = styled.label`font-family : ${Fonts.Montserrat}`
+
+const FlexWrapper = styled.div`display: flex; flex-direction: row; `;
 
 type Values = {
   name: string,
   lastName: string,
   username: string,
   phone: string,
-  age: string,
+  email: string,
 }
 
-export const UserModal = () => {
-
+export const UserModal = (props : {user : User}) => {
+  const {user} = props;
   const [values, setValues] = useState<Values>({
-    name: '',
-    lastName: '',
-    username: '',
-    phone: '',
-    age: ''
+    name: user.name,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    phone: user.phone
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,11 +56,12 @@ export const UserModal = () => {
   return (
     <Container>
       <Form onSubmit={(e) => handleSubmit(e)}>
-        <label>Nombre<InputField onChange={handleChange} name={'name'}/></label>
-        <label>Apellidos <InputField onChange={handleChange} name={'lastName'}/></label>
-        <label>Nombre de usuario <InputField onChange={handleChange} name={'username'}/></label>
-        <label>Email <InputField onChange={handleChange} name={'email'}/></label>
-        <label>Móvil <InputField onChange={handleChange} name={'phone'}/></label>
+        <FlexWrapper>
+        <div><Label>Nombre</Label><InputField onChange={handleChange} name={'name'}/></div>
+        <div><Label>Apellido </Label><InputField onChange={handleChange} name={'lastName'}/></div></FlexWrapper>
+        <Label>Nombre de usuario </Label><InputField onChange={handleChange} name={'username'}/>
+        <Label>Email </Label><InputField onChange={handleChange} name={'email'}/>
+        <Label>Móvil </Label><InputField onChange={handleChange} name={'phone'}/>
       </Form>
     </Container>
   );

@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { User } from '../../../models/user.model';
 import { Colors } from '../../../styles/colors';
+import { Fonts } from '../../../styles/fonts';
 
 interface PropsCourse {
   children?: React.ReactNode;
-  percentCompleted: string;
+  percentCompleted: number;
   courseName?: string;
   inscriptionDate?: string;
 }
@@ -12,8 +14,9 @@ interface PropsCourse {
 
 const Container = styled.div`
   height: 12px;
-  width: 100%;
+  width: 80%;
   position: relative;
+  margin-right: auto;
 `;
 
 const BaseBox = styled.div`
@@ -30,26 +33,67 @@ const Background = styled(BaseBox)`
   width: 100%;
 `;
 
-const ProgressBar = () => (<Container><Background/><Progress /></Container>);
-
-const Progress = styled(BaseBox)`
+const Progress = styled(BaseBox)<{progress: number}>`
   background: ${Colors.successGradient};
-  width: 45%;
+  width: ${(props)=> props.progress}%;
 `;
+const Label = styled.div`
+  font-family : ${Fonts.Poppins};
+  font-weight : 600;
+  font-size : 13px;
+`;
+
+const DateLabel = styled.div`
+  font-family : ${Fonts.Montserrat};
+  font-weight : 400;
+  font-size : 13px;
+`;
+
+const CourseWrapper = styled.div`
+  text-align : left;
+  margin : 5%;
+`;
+
+const CoursesWrapper = styled.div`
+  overflow : auto;
+`;
+
+const FlexContainer = styled.div`
+  display:flex;
+  flex-direction : row;
+  align-items: center;
+`;
+
+const ProgressBar = (props: {progress : number}) => (
+  <FlexContainer>
+    <Container>
+      <Background/>
+      <Progress progress={props.progress}/>
+    </Container>
+    <Label>{props.progress + '%'}</Label>
+    </FlexContainer>
+  );
+
+
 const CourseContainer = (props: PropsCourse) => {
   return (
-    <div>
-      <div>{props.courseName}</div>
-      <ProgressBar/>
-      <div>Fecha de inscripción : {props.inscriptionDate}</div>
-    </div>
+    <CourseWrapper>
+      <Label>{props.courseName}</Label>
+      <ProgressBar progress={props.percentCompleted}/>
+      <DateLabel>Fecha de inscripción : {props.inscriptionDate}</DateLabel>
+    </CourseWrapper>
   );
 };
 
-export const UserCourses = () => {
+export const UserCourses = (props : {user:User}) => {
+  const {user} = props;
   return (
-    <>
-      <CourseContainer percentCompleted={'48'} courseName={'Maths'} inscriptionDate={'2022-12-01'}/>
-    </>
+    <CoursesWrapper>
+   { 
+   user.courses.map((course) => (
+      <CourseContainer percentCompleted={course.percentCompleted} courseName={course.title} inscriptionDate={course.inscriptionDate}/>
+    ))
+    }
+    </CoursesWrapper>
   );
 };

@@ -3,10 +3,10 @@ import userImg from '../../../../assets/user.svg';
 import mail from '../../../../assets/mail.svg';
 import phone from '../../../../assets/phone.svg';
 import calendar from '../../../../assets/calendar.svg';
-import React from 'react';
 import styled from 'styled-components';
 import { Fonts } from '../../../styles/fonts';
 import { Colors } from '../../../styles/colors';
+import { User } from '../../../models/user.model';
 
 const ModalAvatar = styled.img`
     display: block;
@@ -47,7 +47,21 @@ const ModalInfoField = styled.div`
 
 const Image = styled.img`margin-right : 1rem`;
 
-export const UserProfile = () => {
+const FlexWrapper = styled.div`display:flex; flex-direction: column;`
+
+const UserData = styled.div`font-weight:400`;
+
+const DataField = (props:{fieldName:string, fieldData:string}) => {
+  return(
+    <div>
+    <div>{props.fieldName}</div>
+    <UserData>{props.fieldData}</UserData>
+  </div>
+  )
+}
+
+const UserProfile = (props : {user : User}) => {
+  const {user} = props;
   return (
     <>
       <AvatarContainer>
@@ -56,39 +70,26 @@ export const UserProfile = () => {
       <ModalInfoContent>
         <ModalInfoField>
           <Image src={userImg}/>
-          <div>
-            <div>Nombre y apellidos</div>
-            <div>ABC</div>
-          </div>
-        </ModalInfoField>
-        <ModalInfoField>
-          <div>
-            <div>Nombre de usuario</div>
-            <div>ABC</div>
-          </div>
+          <FlexWrapper>
+            <DataField fieldName='Nombre y apellidos' fieldData={user.name + ' ' + user.lastName}></DataField>
+            <DataField fieldName='Nombre de usuario' fieldData={user.username}></DataField>
+          </FlexWrapper>
         </ModalInfoField>
         <ModalInfoField>
           <Image src={mail}/>
-          <div>
-            <div>Email</div>
-            <div>ABC</div>
-          </div>
+          <DataField fieldName='Email' fieldData={user.email}></DataField>
         </ModalInfoField>
         <ModalInfoField>
           <Image src={phone}/>
-          <div>
-            <div>Móvil</div>
-            <div>ABC</div>
-          </div>
+          <DataField fieldName='Móvil' fieldData={user.phone}></DataField>
         </ModalInfoField>
         <ModalInfoField>
           <Image src={calendar}/>
-          <div>
-            <div>Fecha de inscripción</div>
-            <div>ABC</div>
-          </div>
+          <DataField fieldName='Fecha de inscripción' fieldData={user.inscriptionDate}></DataField>
         </ModalInfoField>
       </ModalInfoContent>
     </>
   );
 };
+
+export default UserProfile;

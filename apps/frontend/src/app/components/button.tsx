@@ -8,7 +8,7 @@ interface Props {
   theme?: { color: string, bg: string, borderColor?:string;};
   text?: string;
 
-  callback ?: ()=> Function|void;
+  callback ?:  ()=> void | void;
 }
 
 export const Button = (props: Props) => (<StyledButton onClick={props.callback} theme={props?.theme}>{props?.text}</StyledButton>);

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Route, Routes} from 'react-router-dom';
-import { dashboard } from './pages/dashboard';
+import { Dashboard } from './pages/dashboard';
 import React from 'react';
 
 const Wrapper = styled.div``;
@@ -11,7 +11,7 @@ export function App() {
       <Routes>
         <Route
           path="/"
-          element={dashboard()}
+          element={Dashboard()}
         />
       </Routes>
     </Wrapper>
