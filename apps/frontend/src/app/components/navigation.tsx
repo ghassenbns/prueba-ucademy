@@ -17,8 +17,8 @@ const NAV_LINKS = [{ name: 'Dashboard', img: dashboard }];
 const Navigation = () => {
   return (
     <SideNav>
-      {NAV_LINKS.map((link, index) => {
-        return <Link key={index}><img src={link.img} alt='link-img'/><Item>{link.name}</Item></Link>;
+      {NAV_LINKS.map((link) => {
+        return <Link key={'nav'}><img src={link.img} alt='link-img'/><Item>{link.name}</Item></Link>;
       })}
     </SideNav>
   );

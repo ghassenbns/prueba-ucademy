@@ -13,7 +13,7 @@ export class UsersController {
   }
 
   @Get(':from')
-  async getSlice(@Param('from') from: string): Promise<User[]> {
+  async getSlice(@Param('from') from: string): Promise<{users:User[], max : number}> {
     return await this.usersService.getUsersByIndexes(+from);
   }
 

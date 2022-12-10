@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { User } from '../../../models/user.model';
 import { Colors } from '../../../styles/colors';
 import { Fonts } from '../../../styles/fonts';
+import User from '../../../interfaces/user';
 
 interface PropsCourse {
   children?: React.ReactNode;
@@ -33,9 +33,9 @@ const Background = styled(BaseBox)`
   width: 100%;
 `;
 
-const Progress = styled(BaseBox)<{progress: number}>`
+const Progress = styled(BaseBox)<{ progress: number }>`
   background: ${Colors.successGradient};
-  width: ${(props)=> props.progress}%;
+  width: ${(props) => props.progress}%;
 `;
 const Label = styled.div`
   font-family : ${Fonts.Poppins};
@@ -64,36 +64,38 @@ const FlexContainer = styled.div`
   align-items: center;
 `;
 
-const ProgressBar = (props: {progress : number}) => (
+const ProgressBar = (props: { progress: number }) => (
   <FlexContainer>
     <Container>
       <Background/>
       <Progress progress={props.progress}/>
     </Container>
     <Label>{props.progress + '%'}</Label>
-    </FlexContainer>
-  );
+  </FlexContainer>
+);
 
 
 const CourseContainer = (props: PropsCourse) => {
+  const { courseName, percentCompleted, inscriptionDate} = props;
   return (
     <CourseWrapper>
-      <Label>{props.courseName}</Label>
-      <ProgressBar progress={props.percentCompleted}/>
-      <DateLabel>Fecha de inscripción : {props.inscriptionDate}</DateLabel>
+      <Label>{courseName}</Label>
+      <ProgressBar progress={percentCompleted}/>
+      <DateLabel>Fecha de inscripción : {inscriptionDate}</DateLabel>
     </CourseWrapper>
   );
 };
 
-export const UserCourses = (props : {user:User}) => {
-  const {user} = props;
+export const UserCourses = (props: { user: User }) => {
+  const { user } = props;
   return (
     <CoursesWrapper>
-   { 
-   user.courses.map((course) => (
-      <CourseContainer percentCompleted={course.percentCompleted} courseName={course.title} inscriptionDate={course.inscriptionDate}/>
-    ))
-    }
+      {
+        user.courses.map((course, index) => (
+          <CourseContainer key={index} percentCompleted={course.percentCompleted} courseName={course.title}
+                           inscriptionDate={course.inscriptionDate} />
+        ))
+      }
     </CoursesWrapper>
   );
 };

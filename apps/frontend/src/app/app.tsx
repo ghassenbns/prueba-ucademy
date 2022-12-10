@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Dashboard } from './pages/dashboard';
 import React from 'react';
 

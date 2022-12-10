@@ -5,13 +5,14 @@ import { Colors } from '../styles/colors';
 
 interface Props {
   children?: React.ReactNode;
-  theme?: { color: string, bg: string, borderColor?:string;};
+  theme?: { color: string, bg: string, borderColor?: string; };
   text?: string;
-
-  callback ?:  ()=> void | void;
+  formId?: string;
+  callback?: () => void | void;
 }
 
-export const Button = (props: Props) => (<StyledButton onClick={props.callback} theme={props?.theme}>{props?.text}</StyledButton>);
+export const Button = (props: Props) => (
+  <StyledButton type={props.formId ? 'submit' : 'button'} form={props.formId} onClick={props.callback} theme={props?.theme}>{props?.text}</StyledButton>);
 
 const StyledButton = styled.button`
   background-color: ${props => props.theme.bg};
